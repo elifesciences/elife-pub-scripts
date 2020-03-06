@@ -30,7 +30,7 @@ your repo should now be small again
 now
 
     git lfs install
-    mv ../<large file> .
+    mv ../<large file> ./original/path/to/large-file
     git lfs track <large file>
     git add <large file>
     git add .gitattributes
