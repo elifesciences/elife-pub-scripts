@@ -1,5 +1,19 @@
 # GIT LFS + Github
 
+## case: finding large files
+
+Within your large cloned repository:
+
+    find . -type f -size +100M
+
+If that reveals nothing, inspect repository history for large files.
+
+## case: finding large files that have been deleted but are still present in git history
+
+Within your large cloned repository:
+
+    git-largest-files
+
 ## case: moving a large file to git-lfs
 
     cp <large file> ../
@@ -30,9 +44,12 @@ now
     
 # case: moving git-lfs files back into git
 
+When working with a large repository that someone has already attempting to use git-lfs with, there may be large files
+that were not downloaded that need to be in order to push them to their new home.
+
     GIT_LFS_SKIP_SMUDGE=1 git clone https://repo # 'smudge' prevents lfs pointers or something
     git lfs pull # pull down the large files that weren't cloned
-    
+
 make a list of files already tracked by git-lfs
 
     git lfs ls-files | grep -vE "\.gz|\.rpm$" | cut -d ' ' -f 3 > /tmp/lfs-files.txt
